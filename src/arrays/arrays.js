@@ -38,11 +38,8 @@ const findIndex = (arr, item) => {
  * Sums all the items of an array
  */
 const sum = (arr) => {
-    let sum = 0;
-    for (let item of arr) {
-        sum += item;
-    }
-    return sum;
+   
+    return  arr.reduce((a, b) => a + b, 0);
 };
 
 /**
@@ -56,28 +53,14 @@ const concat = (arr1, arr2) => {
  * Compare the two arrays' content for equality
  */
 const isEqual = (arr1, arr2) => {
-    let bool = true;
-    if (arr1.length != arr2.length) {
-        return false;
-    } else {
-        for (i = 0; i < arr1.length; i++) {
-            if (arr1[i] != arr2[i]) {
-                bool = false;
-            }
-        }
-    }
-    return bool;
+    return JSON.stringify(arr1)==JSON.stringify(arr2);
 };
 
 /**
  * Reverse the given array
  */
 const reverse = (arr) => {
-    let newArr = [];
-    for (i = arr.length - 1; i >= 0; i--) {
-        newArr.push(arr[i])
-    }
-    return newArr;
+    return arr.reverse();
 };
 
 /**
@@ -103,13 +86,7 @@ const fill = (length, item) => {
  * Remove all the falsy values from the given array
  */
 const compact = (arr) => {
-    let data = [];
-    for (i = 0; i < arr.length; i++) {
-        if (!(arr[i] == false || arr[i] === null)) {
-            data.push(arr[i]);
-        }
-    }
-    return data;
+    return arr.filter(Boolean)
 };
 
 /**
@@ -139,25 +116,9 @@ const multiply = (arr, number) => {
  * Find all the duplicated items in the given array
  */
 const findDuplicates = (arr) => {
-    let data = [];
-    let repeted = [];
-    let bool = false;
-    for (i = 0; i < arr.length; i++) {
-
-        for (j = 0; j < repeted.length; j++) {
-            if (arr[i] == repeted[j]) {
-                bool = true;
-            }
-        }
-
-        if (bool) {
-            data.push(arr[i]);
-        } else {
-            repeted.push(arr[i]);
-        }
-        bool = false;
-    }
-    return data;
+    let duplicates = [];
+    const filtered = arr.filter((el, index) => arr.indexOf(el) !== index)
+    return duplicates = [...new Set(filtered)]
 };
 
 /**
